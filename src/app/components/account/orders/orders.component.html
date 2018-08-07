@@ -1,0 +1,40 @@
+<div class="order-component">
+    <div class="header" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+        <h1>My Orders</h1>
+    </div>
+    <div fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+        <table *ngIf="orders.length > 0">
+            <tr id="order-tr">
+                <th>
+                    <h3>Date:</h3>
+                </th>
+                <th>
+                    <h3>Order#:</h3>
+                </th>
+                <th>
+                </th>
+                <th>
+                    <h3>Total:</h3>
+                </th>
+            </tr>
+            <tr *ngFor="let item of orders; let i = index;">
+                <td>
+                    <p>{{formatDate(item.updated_at)}}</p>
+                </td>
+                <td>
+                    <p>{{item.increment_id}}</p>
+                </td>
+                <td>
+                    <a href="#" (click)="viewOrder($event, i)">
+                        <u>View Order</u>
+                    </a>
+                </td>
+                <td>
+                    <p *ngIf="item.total_paid">
+                        <b>$</b> {{item.total_paid.toFixed(2)}}</p>
+                </td>
+            </tr>
+        </table>
+        <h4 *ngIf="!orders.length">You have no orders yet.</h4>
+    </div>
+</div>

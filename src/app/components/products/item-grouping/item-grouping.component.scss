@@ -1,0 +1,44 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border-style: hidden;
+    width: 100%;
+
+    tr {
+        font-weight: 600;
+
+        &:nth-child(odd) {
+            background-color: #E1E1E1;
+        }
+
+        td, th {
+            text-align: center;
+            max-width: 20%;
+            padding: 5px;
+            height: .75em;
+            input {
+                text-align: center;
+                max-width: 20%;
+            }
+        }
+
+    }
+
+    #product-tr {
+        background-color: #484746;
+        color: #f8b615;
+        font-size: 15px;
+    }
+}
+
+.small-update {
+    h3 {
+        font-size: .75em;
+        margin: 5px;
+    }
+
+    p {
+        font-size: .75em;
+        margin: 5px;
+    }
+}

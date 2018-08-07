@@ -1,0 +1,19 @@
+:host {
+    max-height: calc(100%);
+    overflow-y: auto;
+}
+
+.filter {
+    margin: 25px;
+}
+
+.active {
+    background: orange;
+    color: white !important;
+}
+
+button {
+    padding: 0px;
+    font-weight: 600;
+    color: black !important;
+}

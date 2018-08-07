@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Basic');
+
+.order-component {
+    width: 80%;
+    margin: auto;
+    #order-tr {
+        background-color: #A0A0A0;
+        box-shadow: 2px 2px 1px rgba(0,0,0,.87);
+        width: 100%;
+        height: 10px;
+        padding: 0;
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h1,h3, p {
+        font-family: 'Oswald', sans-serif;
+    }
+
+    td, th {
+        // border: 1px solid black;
+        text-align: center;
+        padding: 8px;
+    }
+
+    a {
+        color: #3399FF;
+
+    }
+
+    td {
+        padding: 0px;
+        margin: 0;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        border-style: hidden;
+        width: 85%;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #A0A0A0;
+        height: 20px;
+    }
+
+    // .delete {
+    //     color: #e00000;
+    //     text-decoration: none;
+    // }
+
+    // .saved-carts-component {
+    //     margin-left: 20px;
+    //     margin-top: 100px;
+    // }
+}

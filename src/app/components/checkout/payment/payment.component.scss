@@ -1,0 +1,103 @@
+#payment {
+    padding: 25px;
+
+    #card-option {
+        padding: 25px;
+
+        h4 {
+            margin: 0;
+        }
+    }
+
+    .max-points {
+        cursor: pointer;
+    }
+
+    #new-card-select {
+        cursor: pointer;
+    }
+
+    #new-card {
+        margin-left: -25px;
+
+        .card-container {
+            width: 350px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .payment-form {
+            width: 100%;
+        }
+
+        .new-card-options {
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+    }
+}
+
+#total-segments {
+    padding: 25px;
+
+    #segments {
+        .segment {
+            padding: 10px;
+
+            &:nth-child(even) {
+                background-color: gainsboro;
+            }
+        }
+    }
+
+    #points {
+        margin-bottom: 50px;
+
+        .actions {
+            button {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.loading {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+.use-default-billing {
+    p {
+        text-align: end;
+    }
+}
+
+.tab-navigation {
+    width: 100%;
+    
+    button {
+        margin: 0 25px;
+    }
+}
+
+.progress-container {
+    height: 5px;
+    width: 100%;
+}
+
+.accepted {
+    width: 100%;
+    margin: 5px;
+
+    i {
+        margin: 5px 25px;
+    }
+}
+
+.saved-cards {
+    p {
+        margin-right: 10px;
+    }
+}

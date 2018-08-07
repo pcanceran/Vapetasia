@@ -1,0 +1,22 @@
+<div class="container" fxLayout="row wrap" fxLayout.lt-lg="column" fxLayoutAlign="space-around start" fxLayoutAlign.lt-lg="center center">
+    <div class="contact" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">
+      <h2 fxFlex="100">Account Info</h2>
+      <mat-form-field appearance="outline" fxFlex="80" name="firstName">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" [(ngModel)]="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" name="lastName" fxFlex="80">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" [(ngModel)]="lastName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex="80" name="emailAddress">
+        <mat-label>Email Address</mat-label>
+        <input matInput placeholder="Email Address" [(ngModel)]="email">
+      </mat-form-field>
+      <p class="success" *ngFor="let success of successMessages" fxFlex="100" [fxShow]="showSuccess">{{success}}</p>  
+      <p class="error" *ngFor="let error of errorMessages" fxFlex="100" [fxShow]="showError">{{error}}</p>
+      <div class="btn-container" fxFlex="100" fxLayoutAlign="space-around center">
+        <button mat-raised-button color="primary" (click)="submitAccountInfo()">Save Info</button>
+      </div>
+    </div>
+  </div>

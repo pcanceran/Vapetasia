@@ -1,0 +1,36 @@
+<div id="footer" fxLayout="row wrap" fxLayoutAlign="space-between center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" id="info" fxFlex.lt-md="100">
+    <div fxHide.gt-sm fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
+      <div fxLayout="column" fxLayoutAlign="center center" (click)="scrollToTop()" id="topScroll">
+        <i class="fas fa-caret-up"></i>
+        <p>Top of Page</p>
+      </div>
+    </div>
+    <p fxFlex.lt-md="100"  (click)="openInfoModal(returnPolicy)">
+      Return Policy
+    </p>
+    <p fxFlex.lt-md="100"  (click)="openInfoModal(termsAndConditions)">
+      Terms &amp; Conditions
+    </p>
+    <p fxFlex.lt-md="100"  (click)="openInfoModal(privacyPolicy)">
+      Privacy Policy
+    </p>
+  </div>
+  <div fxLayout="row" fxFlex.lt-md="100" fxLayoutAlign="center center">
+    <a class="bt-smed" target="_blank" title="Instagram" href="//www.instagram.com/vapetasia">
+      <i class="fa fa-1x fa-instagram"></i>
+    </a>
+    <a class="bt-smed" target="_blank" title="Facebook" href="//www.facebook.com/vapetasia">
+      <i class="fa fa-1x fa-facebook"></i>
+    </a>
+    <a class="bt-smed" target="_blank" title="Twitter" href="//www.twitter.com/vapetasia">
+      <i class="fa fa-1x fa-twitter"></i>
+    </a>
+    <a class="bt-smed" target="_blank" title="Youtube" href="//www.youtube.com/user/vapetasiaejuice">
+      <i class="fa fa-1x fa-youtube"></i>
+    </a>
+  </div>
+  <div fxFlex.lt-md="100">
+    <p>Copyright © 2018 Vapetasia LLC. All Rights Reserved</p>
+  </div>
+</div>

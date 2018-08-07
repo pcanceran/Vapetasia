@@ -1,0 +1,43 @@
+<div fxLayout="row wrap" class="content" ngClass.lt-md="small-content">
+    <div fxFlex="20" fxHide.lt-md id="category-menu" fxLayout="row" fxLayoutAlign="end start">
+        <app-liquid-filter *ngIf="productView === 'Liquid'" (onBrandSelect)="changeBrand($event)"></app-liquid-filter>
+    </div>
+    <div [fxFlex]="productListFlex" id="product-list" fxLayout="row" fxLayoutAlign="center start">
+        <div fxLayout="column" id="item-container" fxFlex="75">
+            <div fxFlex="100" fxHide.gt-sm *ngIf="productView === 'Liquid'">
+                <div fxLayout="row" [matMenuTriggerFor]="menu" id="filter">
+                    <i class="material-icons md-36">filter_list</i>
+                    <p>
+                        Filter
+                    </p>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <app-liquid-filter (onBrandSelect)="changeBrand($event)"></app-liquid-filter>
+                </mat-menu>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                <!-- <div fxLayout="column" [fxFlex]="perRowFlex" *ngFor="let item of products | productType: productView | liquidBrand: liquidBrand"
+                    class="category" fxLayoutAlign="center center" style="background-color: orange">
+                    <img [src]="item.thumbnail" [@toggleHover]="item.state" (click)="selectItem(item)" (mouseenter)="toggleHover(item)" (mouseleave)="toggleHover(item)">
+                    <h5>{{item.name}}</h5>
+                </div>
+                <div fxLayout="column" [fxFlex]="perRowFlex" *ngFor="let item of bufferItems" class="category" fxLayoutAlign="center center">
+                </div> -->
+
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let item of products | productType: productView | liquidBrand: liquidBrand" class="category">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title >
+                            <h5>{{item.name}}</h5>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                        <app-item-view [productGroup]="item" ></app-item-view>
+                    </mat-expansion-panel>
+                  </mat-accordion> 
+            </div>
+        </div>
+        <div fxFlex="20" fxHide.lt-md></div>
+    </div>
+</div>
+
+

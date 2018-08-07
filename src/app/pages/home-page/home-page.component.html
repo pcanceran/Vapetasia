@@ -1,0 +1,24 @@
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" id="container">
+        <div [fxFlex]="containerFlex" fxLayout="row" fxLayoutAlign="center center" id="banner">
+          <img src="https://dev17d.vapetasia.com/media/home-page/Vapetasia_v2_1140x311.png"/>
+        </div>
+        <div [fxFlex]="containerFlex" fxLayout="row wrap" fxLayoutAlign="center center">
+          <div [fxFlex]="titleFlex" fxLayout="row" fxLayoutAlign="center center" id="title">
+            <h2 ngClass.lt-md="title-mini">VAPETASIA WHOLESALE <br fxHide.gt-sm/>&amp;<br fxHide.gt-sm/> DISTRIBUTION</h2>
+          </div>
+          <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around start" id="info-container">
+            <div *ngFor="let info of pageInfo" fxFlex="30" fxFlex.lt-md="80" fxLayout="column" fxLayoutAlign="start center">
+              <img [src]="info.image"/>
+              <h3>{{info.title}}</h3>
+              <p>{{info.text}}</p>
+            </div>
+          </div>
+          <div fxLayout="row" id="brands-container" fxLayoutAlign="center center">
+            <div [fxFlex]="brandContainerFlex" fxLayout="row wrap" fxLayoutAlign="space-around center" id="brands">
+              <img [fxFlex]="brandImageFlex" *ngFor="let brand of brandImages" [src]="brand"/>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+#nav {
+    height: 100px;
+    width: 100%;
+    box-shadow: 0px 3px 9px black;
+    z-index: 10;
+    margin-bottom: 10px;
+
+    #logo {
+        img {
+            width: 100%;
+            height: auto;
+            overflow: auto;
+            cursor: pointer;
+        }
+    }
+
+    .nav-items {
+        h2 {
+            margin: 25px;
+            cursor: pointer;
+            color: black;
+
+            &:hover {
+                color: orange;
+            }
+        }
+    }
+
+    .nav-items-medium {
+        h2 {
+            margin: 15px;
+            cursor: pointer;
+            color: black;
+            font-size: 1em;
+
+            &:hover {
+                color: orange;
+            }
+        }
+
+        button {
+            margin: 25px;
+        }
+    }
+
+    #button-group {
+        height: 100%;
+
+        #login-widget {
+            z-index: 10;
+        }
+
+        button {
+            margin: 25px;
+        }
+    }
+}

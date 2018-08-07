@@ -1,0 +1,45 @@
+<div class="root-container">
+  <div class="header" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+    <h1>My Dashboard</h1>
+  </div>
+  <div class="sub-header" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+    <h2>Account Information</h2>
+  </div>
+  <hr>
+  <div [style.text-align]="align === true ? 'center': 'start'"fxLayout="row" fxLayout.lt-md="column"
+    class="account-info" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+    <div class="info-section" [fxFlex]="mqFlex">
+      <h2>Contact Info</h2>
+      <p>{{customer.firstname}} {{customer.lastname}}</p>
+      <p>{{customer.email}}</p>
+      <p class="edit"  (click)="openItem()" >Edit</p>
+      <p class="edit" (click)="changePassword()">Change Password </p>
+    </div>
+    <!-- <div class="info-section" [fxFlex]="mqFlex">
+      <h2>Newsletters</h2>
+      <p>You are subscribed to "General Subscription"</p>
+      <p class="edit" (click)="openItem(defaultBilling)">Edit</p>
+    </div> -->
+  </div>
+  <div fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center" class="address-header">
+    <h1>Address Book</h1>
+  </div>
+  <div class="address-sub-header" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+    <p (click)="manageAddresses()" class="edit">Manage Addresses</p>
+  </div>
+  <hr>
+  <div id="addresses" [style.text-align]="align === true ? 'center': 'start'" fxLayout="row" fxLayout.lt-md="row" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center" fxLayout.lt-md="column">
+    <div class="info-section" [fxFlex]="mqFlex">
+      <h2>Default Shipping Address</h2>
+      <p>{{defaultShipping.firstname}} {{defaultShipping.lastname}}</p>
+      <p *ngFor="let line of defaultShipping.street">{{line}}</p>
+      <p>{{defaultShipping.city}}, {{defaultShipping.region.region}} {{defaultShipping.postcode}} {{defaultShipping.country_id}}</p>
+    </div>
+    <div class="info-section"[fxFlex]="mqFlex">
+      <h2>Default Billing Address</h2>
+      <p>{{defaultBilling.firstname}} {{defaultBilling.lastname}}</p>
+      <p *ngFor="let line of defaultBilling.street">{{line}}</p>
+      <p>{{defaultBilling.city}}, {{defaultBilling.region.region}} {{defaultBilling.postcode}}  {{defaultBilling.country_id}}</p>
+    </div>
+  </div>
+</div>

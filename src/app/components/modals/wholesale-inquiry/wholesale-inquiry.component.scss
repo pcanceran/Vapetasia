@@ -1,0 +1,44 @@
+.container {
+
+    form {
+        padding-bottom: 25px;
+    }
+
+    .title > h2 {
+        margin-bottom: 1px;
+    }
+    .info {
+        background-color: #3f51b5;
+        color: white;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .contact-info {
+        border-top: 2px solid black;
+        padding-top: 20px;
+    }
+
+    .address {
+        border-top: 2px solid black;
+        padding-top: 20px;
+    }
+
+    .button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .password {
+        padding-top: 20px;
+    }
+     .error {
+        text-align: center;
+        width: 100%;
+        color: #D8000C;
+        background-color: #FFBABA;
+        margin-top: 0px;
+        font-size: 13px;
+    }
+    
+}

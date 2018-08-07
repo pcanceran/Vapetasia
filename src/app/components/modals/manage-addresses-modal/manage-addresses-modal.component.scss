@@ -1,0 +1,61 @@
+.container {
+    overflow-x: hidden;
+
+    h2 {
+        text-align: center;
+    }
+
+    .address {
+        text-align: center;
+        padding-bottom: 10px;
+
+        p {
+            margin: 0;
+        }
+
+        .icons {
+            float: right;
+        }
+
+        .default {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .controls {
+            button {
+                margin: 25px;
+            }
+        }
+
+        #messages {
+            padding: 25px 0;
+            width: 100%;
+
+            .error {
+                text-align: center;
+                width: 100%;
+                color: #D8000C;
+                background-color: #FFBABA;
+                margin-top: 0px;
+                font-size: 13px;
+            }
+    
+            .success {
+                text-align: center;
+                width: 100%;
+                color: #4F8A10;
+                background-color: #DFF2BF;
+                font-size: 13px;
+            }
+        }
+    }
+    
+    mat-icon {
+        color: grey;
+    }
+}
+
+p {
+    text-align: center;
+}

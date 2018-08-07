@@ -1,0 +1,34 @@
+<div fxLayout="row wrap" id="login" fxLayoutAlign="end start">
+  <div fxFlex="50" fxFlex.lt-lg="75" fxFlex.lt-md="100" fxLayout="column" id="login-button" fxLayoutAlign="center center">
+    <div fxLayoutAlign="center center" fxLayout="row" class="forgot-password">
+      <p class="forgot" (click)="openForgotPassword()">Forgot Password</p>
+    </div>
+    <button mat-raised-button color="primary" (click)="toggleLogin()">Login</button>
+  </div>
+  <div fxFlex="100" fxFlex.lt-lg="150" fxFlex.lt-md="200" fxFlex.lt-sm="250" fxLayout="row" id="login-form" fxLayoutAlign="end center">
+    <mat-accordion fxFlex="100">
+      <mat-expansion-panel [expanded]="expanded" [hideToggle]="true" fxFlex="100">
+        <mat-expansion-panel-header [expandedHeight]="0" [collapsedHeight]="0"></mat-expansion-panel-header>
+        <form fxLayout="row wrap" class="panel-body" fxFlex="100">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Username</mat-label>
+            <input type="email" name="username" matInput placeholder="Username" [(ngModel)]="username">
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Password</mat-label>
+            <input type="password" name="password" matInput placeholder="Password" [(ngModel)]="password">
+          </mat-form-field>
+          <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
+              <p class="message">{{logAttemptMessage}}</p>
+            </div>
+          <mat-action-row fxFlex="100" class="sign-in">
+              <p>Sign In</p>
+              <button mat-icon-button (click)="attemptLogin()" color="primary" matTooltipPosition="below">
+                  <i class="material-icons md-36">exit_to_app</i>
+              </button>
+          </mat-action-row>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<form fxLayout="row wrap" fxFlex="100" fxLayoutAlign="center center">
+  <div fxLayout="row reverse-wrap" fxFlex="100" fxLayoutAlign="center end">
+    <div fxFlex="25" fxFlex.lt-md="100" fxFlex.md="40" fxLayout="column" id="payment">
+      <h3>Payment Options</h3>
+      <mat-radio-group name="paymentOption" [(ngModel)]="selectedPaymentOption" fxLayout="column" required>
+        <mat-radio-button color="primary" [value]="'card'" class="methods" (click)="paymentOptionSelected()">
+          <p>Credit/Debit Card</p>
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="selectedPaymentOption === 'card'" id="card-option">
+        <div>
+          <h4 *ngIf="paymentProfiles">Saved Cards</h4>
+          <mat-radio-group name="paymentProfiles" fxLayout="column" #savedCardsGroup>
+            <mat-radio-button color="primary" *ngFor="let paymentProfile of paymentProfiles" [value]="paymentProfile" class="methods"
+              (click)="paymentMethodSelected(paymentProfile)" (click)="setNewCardSelected(false)">
+              <div fxLayout="row" fxLayoutAlign="center center" class="saved-cards">
+                <p *ngIf="paymentProfile.payment.creditCard.cardType === 'Visa'">
+                  <i class="fab fa-cc-visa fa-lg"></i>
+                  <b> Visa</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}}</p>
+                <p *ngIf="paymentProfile.payment.creditCard.cardType === 'AmericanExpress'">
+                  <i class="fab fa-cc-amex fa-lg"></i>
+                  <b> American Express</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}}</p>
+                <p *ngIf="paymentProfile.payment.creditCard.cardType === 'MasterCard'">
+                  <i class="fab fa-cc-mastercard fa-lg"></i>
+                  <b> Mastercard</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}}</p>
+                <p *ngIf="paymentProfile.payment.creditCard.cardType === 'Discover'">
+                  <i class="fab fa-cc-discover fa-lg"></i>
+                  <b> Discover Card</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}}</p>
+                <div>
+                  <mat-form-field *ngIf="paymentProfiles  &amp;&amp; paymentProfile.customerPaymentProfileId == selectedPayment.customerPaymentProfileId  &amp;&amp; !newCardSelected">
+                    <!-- Change placeholder and label to be dynamic based on card type. -->
+                    <input type="text" matInput placeholder="cvc" name="cvc" [(ngModel)]="paymentInfo.cvc" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-radio-button>
+            <mat-radio-button color="primary" (click)="setNewCardSelected(true)" value="new">
+              <p id="new-card-select">
+                <i class="fas fa-plus fa-lg"></i> New Card</p>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div id="new-card" *ngIf="newCardSelected">
+          <div class="card-container"></div>
+          <div class="accepted" fxLayout="row wrap" fxFlex="100" fxLayoutAlign="center center">
+            <div fxFlex="100" fxLayoutAlign="center center">
+              <i class="fab fa-cc-visa fa-2x"></i>
+              <i class="fab fa-cc-amex fa-2x"></i>
+              <i class="fab fa-cc-mastercard fa-2x"></i>
+              <i class="fab fa-cc-discover fa-2x"></i>
+            </div>
+          </div>
+          <div>
+            <div fxLayout="row wrap" fxLayoutAlign="space-between center" card container=".card-container" card-width="350" [messages]="messages"
+              [placeholders]="placeholders" [masks]="masks" class="payment-form" formatting="false" debug="true" [formGroup]="cardFormGroup">
+              <mat-form-field appearance="outline" fxFlex="100" class="p-form-input">
+                <mat-label>Card Number</mat-label>
+                <input type="text" matInput placeholder="Card Number" formControlName="card" [errorStateMatcher]="matcher" name="number"
+                  card-number [maxlength]="maxLength" />
+                <mat-error *ngIf="cardFormGroup.controls['card'].hasError('error') &amp;&amp; !cardFormGroup.controls['card'].hasError('required')">
+                  Sorry this card type is currently not supported.
+                </mat-error>
+                <mat-error *ngIf="cardFormGroup.controls['card'].hasError('required') || submitError ">
+                  Card number field is required.
+                </mat-error>
+                <mat-error *ngIf="cardFormGroup.controls['card'].hasError('invalidLength')">
+                  Card number must be {{cardLength}} characters
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" fxFlex="48" class="p-form-input">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput placeholder="First Name" name="first-name" card-name formControlName="first" />
+                <mat-error *ngIf="cardFormGroup.controls['first'].hasError('required' || submitError)">
+                  First name field is required.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex="48" class="p-form-input">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput placeholder="Last Name" name="last-name" card-name formControlName="last" />
+                <mat-error *ngIf="cardFormGroup.controls['last'].hasError('required')">
+                  Last name field is required.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex="48" class="p-form-input">
+                <mat-label>••/••</mat-label>
+                <input type="text" matInput placeholder="Expiration" name="expiry" card-expiry formControlName="expiration" />
+                <mat-error *ngIf="cardFormGroup.controls['expiration'].hasError('required')">
+                  Expiration field is required.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex="48" class="p-form-input">
+                <mat-label>CVC</mat-label>
+                <!-- cvc validator -->
+                <input type="CVC" matInput placeholder="CVC" name="cvc" card-cvc formControlName="cvc" [maxlength]="cvvLength"/>
+                <mat-error *ngIf="cardFormGroup.controls['cvc'].hasError('required')">
+                  CVC field is required.
+                </mat-error>
+                <mat-error *ngIf="cardFormGroup.controls['cvc'].hasError('invalidCVV') &amp;&amp; !cardFormGroup.controls['cvc'].hasError('required')">
+                  {{currentCardType}} CVC requires {{cvvLength}} characters
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" class="new-card-options">
+              <mat-checkbox color="primary" [(ngModel)]="newCard.save" name="save-card">Save Card</mat-checkbox>
+              <mat-checkbox color="primary" [labelPosition]="'before'" [(ngModel)]="defaultBilling" name="default-billing" (click)="resetNonDefaultBilling.emit(true)">Default Billing</mat-checkbox>
+            </div>
+            <div *ngIf="defaultBilling" class="use-default-billing">
+              <p>{{billingAddress.firstname}} {{billingAddress.lastname}}</p>
+              <p *ngFor="let line of billingAddress.street">{{line}}</p>
+              <p>{{billingAddress.city}}, {{billingAddress.region.region}} {{billingAddress.postcode}} {{billingAddress.country_id}}</p>
+            </div>
+            <div>
+              <app-billing-address *ngIf="!defaultBilling" [addressFormGroup]="addressFormGroup" [newAddress]="newAddress" [info]="info"></app-billing-address>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="selectedPaymentOption === ''">
+        <!-- Placeholder -->
+      </div>
+    </div>
+    <div fxFlex="25" fxFlex.lt-md="100" fxFlex.md="40" id="total-segments" fxLayout="column">
+      <div id="points" *ngIf="rewardPointsData">
+        <h4>Reward Points</h4>
+        <p>{{rewardPointsData.availible}}</p>
+        <div>
+          <div fxLayout="row wrap">
+            <mat-form-field appearance="outline">
+              <!-- <mat-label>Use Points</mat-label> -->
+              <input matInput placeholder="Points to Use" [(ngModel)]="pointsToApply" name="points">
+              <mat-progress-bar class="loading" fxFlex="100" mode="indeterminate" *ngIf="!pointsReady"></mat-progress-bar>
+            </mat-form-field>
+            <button mat-icon-button matTooltip="Max Points" matTooltipPosition="right" class="max-points" (click)="maxPoints()">
+              <i class="fas fa-level-up-alt  fa-lg"></i>
+            </button>
+          </div>
+          <div fxLayout="row" class="actions">
+            <button mat-raised-button color="warn" (click)="applyPoints(true)">Remove</button>
+            <button mat-raised-button color="primary" (click)="applyPoints(false)">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div id="segments">
+        <div fxLayout="row wrap" *ngFor="let segment of cartTotal.total_segments" class="segment">
+          <div fxFlex="70" fxLayout="row" fxLayoutAlign="start center">
+            <b *ngIf="segment.title !== 'FPT'">{{segment.title}}</b>
+            <b *ngIf="segment.title === 'FPT'">Tax Paid</b>
+          </div>
+          <div fxFlex="30" fxLayout="row" fxLayoutAlign="end center"> 
+            <b>$</b>{{segment.value.toFixed(2)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-navigation" fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="switchTabs(0)">Back</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!buttonStatus.paymentComplete || !buttonStatus.rewardsComplete"
+      (click)="switchTabs(2)">Next</button>
+  </div>
+</form>

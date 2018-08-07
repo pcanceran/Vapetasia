@@ -1,0 +1,62 @@
+<div class="update-item" fxLayout="column" ngClass.lt-md="small-update">
+  <div>
+    <table>
+      <tr id="product-tr">
+        <th *ngIf="type === 'Promo'">
+          <h3>Type</h3>
+        </th>
+        <th *ngIf="type === 'Liquid' || subType === 'Top'">
+          <h3>Size</h3>
+        </th>
+        <th *ngIf="type === 'Liquid'">
+          <h3 fxHide.lt-md>Nicotine</h3>
+          <h3 fxHide.gt-sm>Nic</h3>
+        </th>
+        <th *ngIf="subType === 'Headwear'">
+          <h3>Color</h3>
+        </th>
+        <th>
+          <h3>Price</h3>
+        </th>
+        <th *ngIf="type !== 'Promo'">
+          <h3>MSRP</h3>
+        </th>
+        <th>
+          <h3>In Stock:</h3>
+        </th>
+        <th>
+          <h3>Quantity:</h3>
+        </th>
+      </tr>
+      <tr *ngFor="let item of grouping.products">
+        <td *ngIf="type === 'Promo'">
+          <p>{{item.descriptor}}</p>
+        </td>
+        <td *ngIf="type === 'Liquid' || subType === 'Top'">
+          <p>{{item.size}}<span *ngIf="item.size === '60ml'">&nbsp;</span></p> <!-- change later - to prevent shifting on Liquid size change -->
+        </td>
+        <td *ngIf="type === 'Liquid'">
+          <p>{{item.nic}}</p>
+        </td>
+        <td *ngIf="subType === 'Headwear'">
+          <p>{{item.color}}</p>
+        </td>
+        <td>
+          <p *ngIf="item.customerPrice">{{item.customerPrice.toFixed(2)}}</p> <!-- change later - better implementation -->
+          <i class="fas fa-eye-slash" *ngIf="!item.customerPrice"></i>
+        </td>
+        <td *ngIf="type !== 'Promo'">
+          <p>{{item.msrp.toFixed(2)}}</p>
+        </td>
+        <td>
+          <p *ngIf="item.stocked < 500 &amp;&amp;	item.stocked > 0">{{item.stocked}}</p>
+          <p *ngIf="item.stocked >= 500">500+</p>
+          <p *ngIf="item.stocked <= 0">0</p>
+        </td>
+        <td>
+          <input type="number" min="0" onkeydown="javascript: return event.keyCode == 69 ? false : true" [(ngModel)]="item.qty" (input)="qtyChanged()"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

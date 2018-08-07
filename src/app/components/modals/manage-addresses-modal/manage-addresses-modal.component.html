@@ -1,0 +1,135 @@
+<div class="container" fxLayout="row wrap" fxLayoutAlign="center">
+  <h2 fxFlex="100"> Manage Addresses </h2>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let address of addressListDirty; let i = index" class="address-expansion">
+
+      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="space-between center" (click)="setSelected(i)">
+        <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+          <h5>{{address.street}}, {{address.city}}, {{address.region.region}}, {{address.postcode}}</h5>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p *ngIf="address.id.toString() === customerData.default_shipping &amp;&amp; address.id.toString() !== customerData.default_billing"><b>Default Shipping</b></p>
+          <p *ngIf="address.id.toString() === customerData.default_billing &amp;&amp; address.id.toString() !== customerData.default_shipping"><b>Default Billing</b></p>
+          <p *ngIf="address.id.toString() === customerData.default_shipping &amp;&amp; address.id.toString() === customerData.default_billing"><b>Default Shipping &amp; Billing</b></p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="address" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start">
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>First Name</mat-label>
+          <input matInput name="first" placeholder="First Name" [(ngModel)]="address.firstname" [value]="address.firstname">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Last Name</mat-label>
+          <input matInput name="last" placeholder="Last Name" [(ngModel)]="address.lastname" [value]="address.lastname">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" *ngFor="let line of address.street; let i = index; trackBy: trackByLine">
+          <mat-label>Street Address</mat-label>
+          <input matInput name="street" placeholder="Street Address" [(ngModel)]="address.street[i]" [value]="line">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>City</mat-label>
+          <input matInput name="city" placeholder="City" [(ngModel)]="address.city" [value]="address.city">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" name="state">
+          <mat-label>State/Province</mat-label>
+          <mat-select placeholder="State/Province" [(ngModel)]="selectedRegion">
+            <mat-option [value]="region" *ngFor="let region of regionList | region: selectedCountry">
+              {{region.default_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Postal Code</mat-label>
+          <input matInput name="zip" placeholder="Postal Code" [(ngModel)]="address.postcode">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" name="country">
+          <mat-label>Country</mat-label>
+          <mat-select placeholder="Country" [(ngModel)]="selectedCountry">
+            <mat-option [value]="country" *ngFor="let country of countryList">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="default">
+            <mat-checkbox [(ngModel)]="address.default_shipping" *ngIf="address.id.toString() !== customerData.default_shipping" color="primary">
+              <b>Default Shipping </b><i class="fas fa-box fa-lg"></i>
+            </mat-checkbox>
+        </div>
+        <div class="default">
+            <mat-checkbox [(ngModel)]="address.default_billing" *ngIf="address.id.toString() !== customerData.default_billing" color="primary">
+              <b>Default Billing </b><i class="far fa-credit-card fa-lg"></i>
+            </mat-checkbox>
+        </div>
+        <div class="controls" fxFlex="100" fxLayoutAlign="center">
+          <button class="submit" mat-raised-button color="warn" (click)="confirmDelete(i)" *ngIf="address.id.toString() !== customerData.default_shipping &amp;&amp; address.id.toString() !== customerData.default_billing">
+            Delete
+          </button>
+          <button class="submit" mat-raised-button color="primary" (click)="checkFields(i)">
+            Submit
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel class="address-expansion">
+      <mat-expansion-panel-header (click)="setSelected(-1)">
+        <mat-panel-title>
+          <b>Add Address</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="address" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start">
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First Name" [(ngModel)]="newAddress.firstName" name="firstname">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Last Name" [(ngModel)]="newAddress.lastName" name="lastname">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" *ngFor="let line of newAddress.street; let i = index; trackBy: trackByLine">
+          <mat-label>Street Address</mat-label>
+          <input matInput name="street" placeholder="Street Address" [(ngModel)]="newAddress.street[i]">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>City</mat-label>
+          <input matInput name="city" placeholder="City" [(ngModel)]="newAddress.city" name="address.city">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" name="state">
+          <mat-label>State/Province</mat-label>
+          <mat-select placeholder="State/Province" [(ngModel)]="selectedRegion">
+            <mat-option [value]="region" *ngFor="let region of regionList | region: selectedCountry">
+              {{region.default_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Postal Code</mat-label>
+          <input matInput name="zip" placeholder="Postal Code" [(ngModel)]="newAddress.zipCode">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" name="country">
+          <mat-label>Country</mat-label>
+          <mat-select placeholder="Country" [(ngModel)]="selectedCountry">
+            <mat-option [value]="country" *ngFor="let country of countryList">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Telephone Number</mat-label>
+          <input matInput name="phone" placeholder="Telephone Number" [(ngModel)]="newAddress.telephone" name="telephone">
+        </mat-form-field>
+        <div id="messages">
+          <p class="success" *ngFor="let success of successMessages" fxFlex="100">{{success}}</p>  
+          <p class="error" *ngFor="let error of errorMessages" fxFlex="100">{{error}}</p>
+        </div>
+        <div class="controls" fxFlex="100" fxLayoutAlign="center">
+          <button class="submit" mat-raised-button color="primary" (click)="checkFields(-1)">
+            Submit
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,67 @@
+<div class="address" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start" [formGroup]="addressFormGroup">
+  <mat-form-field appearance="outline" fxFlex="100">
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="First Name" [(ngModel)]="newAddress.firstName" name="firstname" formControlName="first">
+    <mat-error>
+      First name field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100">
+    <mat-label>Last Name</mat-label>
+    <input matInput placeholder="Last Name" [(ngModel)]="newAddress.lastName" name="lastname" formControlName="last">
+    <mat-error>
+      Last name field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100" *ngFor="let line of newAddress.street; let i = index; trackBy: trackByLine">
+    <mat-label>Street Address</mat-label>
+    <input matInput name="street" placeholder="Street Address" [(ngModel)]="newAddress.street[i]" formControlName="street">
+    <mat-error>
+      Street address field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100">
+    <mat-label>City</mat-label>
+    <input matInput name="city" placeholder="City" [(ngModel)]="newAddress.city" name="address.city" formControlName="city">
+    <mat-error>
+      City field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100" name="state">
+    <mat-label>State/Province</mat-label>
+    <mat-select placeholder="State/Province" [(ngModel)]="newAddress.selectedRegion" name="state-province" formControlName="state">
+      <mat-option [value]="region" *ngFor="let region of regionList | region: selectedCountry">
+        <!-- (click)="setNewAddressRegion(region)" -->
+        {{region.default_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>
+        State field is required.
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100">
+    <mat-label>Postal Code</mat-label>
+    <input matInput name="zip" placeholder="Postal Code" [(ngModel)]="newAddress.zipCode" formControlName="zipCode">
+    <mat-error>
+      Postal code field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100" name="country">
+    <mat-label>Country</mat-label>
+    <mat-select placeholder="Country" [(ngModel)]="selectedCountry" name="country" formControlName="country">
+      <mat-option [value]="country" *ngFor="let country of countryList">
+        {{country.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>
+        Country field is required.
+      </mat-error>  
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="100">
+    <mat-label>Telephone Number</mat-label>
+    <input matInput name="phone" placeholder="Telephone Number" [(ngModel)]="newAddress.telephone" name="telephone" formControlName="telephone">
+    <mat-error>
+        Telephone number field is required.
+      </mat-error>  
+  </mat-form-field>
+</div>

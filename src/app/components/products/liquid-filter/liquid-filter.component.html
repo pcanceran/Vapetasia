@@ -1,0 +1,19 @@
+<div class="filter">
+  <mat-expansion-panel expanded="true" fxHide.lt-md>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{brands.title}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row wrap">
+        <button fxFlex="100" [ngClass]="{'active': active === brand }" mat-button *ngFor="let brand of brands.sectionItems" color="primary" (click)="filterBrand(brand)">
+          {{brand}}
+        </button>
+      </div>
+    </mat-expansion-panel>
+    <div fxLayout="row wrap" fxHide.gt-sm>
+        <button fxFlex="100" [ngClass]="{'active': active === brand }" mat-button *ngFor="let brand of brands.sectionItems" color="primary" (click)="filterBrand(brand)">
+          {{brand}}
+        </button>
+      </div>
+</div>

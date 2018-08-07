@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Basic');
+
+.root-container {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 25px;
+
+    h1, h2, p {
+        font-family: 'Basic', sans-serif;
+    }
+    
+    h1 {
+        font-size: 40px;
+    }
+    
+    h2 {
+        font-size: 25px;
+    }
+    
+    p {
+        font-size: 20px;
+    }
+
+    .account-info {
+        margin-bottom: 50px;
+        // text-align: center;
+    }
+
+    .address-header > h1 {
+        display: inline;
+        margin-right: 10px;
+    }
+
+    .address-sub-header {
+        p {
+            margin: 0;
+        }
+    }
+
+    #addresses {
+        p {
+            margin: 5px 0;
+        }
+
+        .info-section {
+            padding-bottom: 25px;
+        }
+    }
+
+    .align {
+        text-align: center;
+    }
+}
+
+::ng-deep .cdk-overlay-container {
+    position: fixed; 
+    z-index: 9000;
+}
+
+.edit {
+    color: rgb(85, 26, 139);    ;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 17px;
+}

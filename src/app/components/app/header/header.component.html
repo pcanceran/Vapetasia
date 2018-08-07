@@ -1,0 +1,53 @@
+<div id="nav" fxLayout="row" fxLayoutAlign="space-between center">
+    <div [fxFlex]="logoFlex" fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.lt-md="space-around center" id="logo">
+        <button mat-icon-button fxHide.gt-sm (click)="toggleNav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img src="https://dev17d.vapetasia.com/media/home-page/logo.png" alt="Vapetasia" style="width: 207px;" (click)="goHome()"/>
+    </div>
+    <div fxHide.lt-md fxLayout="row" fxLayoutAlign="center center" class="nav-items" ngClass.md="nav-items-medium">
+        <div>
+            <h2 (click)="setProductView('Liquid')">
+                E-LIQUIDS
+            </h2>
+        </div>
+        <div>
+            <h2 (click)="setProductView('Apparel')">
+                APPAREL
+            </h2>
+        </div>
+        <div>
+            <h2 (click)="setProductView('Promo')">
+                PROMO
+            </h2>
+        </div>
+        <div>
+            <h2 [fxHide]="!logged" (click)="checkout()">
+                CHECKOUT
+            </h2>
+        </div>
+        <!-- <div>
+            <h2 [fxHide]="logged" (click)="openApplication()">
+               WHOLESALE-INQUIRY
+            </h2>
+        </div> -->
+    </div>
+    <div id="button-group" [fxFlex]="buttonGroupFlex" fxLayout="row" fxLayoutAlign="center center">
+        <div *ngIf="logged" [fxFlex]="subButtonGroupFlex" fxLayoutAlign.lt-md="center center">
+            <button mat-icon-button matTooltip="Cart" matTooltipPosition="below" (click)="toggleCart()">
+                <i [matBadge]="cartCount" [matBadgeHidden]="!cartCount" matBadgeColor="warn" class="material-icons md-36">shopping_cart</i>
+            </button>
+            <button mat-icon-button fxShow.lt-md="false" [routerLink]="['/account']" matTooltip="Account" matTooltipPosition="below">
+                <i class="material-icons md-36">account_circle</i>
+            </button>
+            <!-- launch support ticket modal / maybe - <i class="material-icons">live_help</i> /-->
+            <!-- <button mat-icon-button fxShow.lt-md="false" [routerLink]="['/support-ticket']" matTooltip="Create Support Ticket" matTooltipPosition="below">
+                <i class="material-icons md-36">receipt</i>
+            </button> -->
+            <button mat-icon-button fxShow.lt-md="false" (click)="logout()" color="warn" matTooltip="Logout" matTooltipPosition="below">
+                <i class="material-icons md-36">exit_to_app</i>
+            </button>
+        </div>
+        <app-login fxFlex="100" *ngIf="!logged" id="login-widget"></app-login>
+    </div>
+</div>

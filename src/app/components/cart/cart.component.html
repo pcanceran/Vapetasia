@@ -1,0 +1,63 @@
+<div class="root-container">
+  <div fxFlex="100" class="cart-header" fxLayout="row wrap" mat-dialog-title>
+    <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
+      <h2>Cart</h2>
+    </div>
+    <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start center">
+      <p><b>{{localCart.count}}</b> item<span *ngIf="localCart.count !== 1">s</span> in cart</p>
+    </div>
+  </div>
+  <div class="container" fxFlex="100" fxLayout="row wrap">
+    <div fxLayout.sm="column" fxLayout.xs="column" fxFlex="90" *ngFor="let cartItem of localCart.items; let itemIndex = index"
+      fxLayout="row" [@outRight]="animation" fxLayoutalign="center center" class="cart-items">
+      <div class="img-container" fxFlex.gt-sm="25">
+        <img [src]="cartItem.thumbnail" />
+        <h5>{{cartItem.name}}</h5>
+      </div>
+      <div class="grouping-container" fxFlex="75">
+        <div *ngFor="let grouping of cartItem.groupings; let groupIndex = index;" fxLayout="column">
+          <h2 class="grouping-title" fxFlex="100" *ngIf="grouping.inCart === true">
+            <span *ngIf="cartItem.type === 'Liquid'">{{grouping.name}} </span>{{cartItem.name}}</h2>
+          <div fxLayout="row" fxFlex="100" class="table-container" *ngFor="let product of grouping.products | cartItem; let rowIndex = index;">
+            <table fxFlex="100">
+              <tr fxLayout="row" fxLayoutAlign="space-around center">
+                <td fxFlex="25">
+                  <p *ngIf="product.customerPrice"><b>$</b>{{product.customerPrice.toFixed(2)}}</p>
+                  <i class="material-icons" *ngIf="!product.customerPrice">report</i>
+                </td>
+                <td fxFlex="25">
+                  <p>{{product.descriptor}}</p>
+                </td>
+                <td fxFlex="25">
+                  <p [ngClass]="{'hide': selectedProducts.includes(product)}">
+                    <b>{{product.inCart}}</b>
+                  </p>
+                  <div [ngClass]="{'hide': !selectedProducts.includes(product)}">
+                    <input type="number" min="0" class="qty-input" placeholder="Quantity" [(ngModel)]="product.qty">
+                  </div>
+                </td>
+                <td fxFlex="25" fxLayout="row" fxLayoutAlign="space-around center">
+                  <mat-icon matTooltip="Cancel" [fxHide]="!selectedProducts.includes(product)" (click)="removeSelectedProduct(product)" class="action-button"
+                    fxFlex="100">cancel</mat-icon>
+                  <mat-icon matTooltip="Remove Item" [fxHide]="selectedProducts.includes(product)" fxFlex="100" (click)="deleteItem(product, grouping)"
+                    class="action-button">delete</mat-icon>
+                  <mat-icon matTooltip="Confirm" [fxHide]="!selectedProducts.includes(product)" (click)="removeSelectedProduct(product)" (click)="updateItem(product)"
+                    fxFlex="100" class="action-button">check_circle</mat-icon>
+                  <mat-icon matTooltip="Edit Quantity" [fxHide]="selectedProducts.includes(product)" fxFlex="100" class="action-button" (click)="setSelectedProduct(product)">create</mat-icon>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div fxFlex="90" fxLayout="row" fxLayoutAlign="end center">
+      <p><b>Subtotal:</b> ${{localCart.subtotal.toFixed(2)}}</p>
+    </div>
+    <div fxFlex="90" fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button color="primary" (click)="checkout()">Checkout</button>
+    </div>
+  </div>
+</div>

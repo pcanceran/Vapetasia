@@ -1,0 +1,30 @@
+#footer {
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+
+    .bt-smed {
+        color: white !important;
+        width: 25px !important;
+        padding: 5px;
+        font-size: 20px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    #topScroll {
+        margin: 10px;
+
+        p {
+            margin: 0px;
+        }
+    }
+}
+
+#info {
+    p, i {
+        cursor: pointer;
+    }
+}

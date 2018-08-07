@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+// scrollbar
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+// card styling
+.jp-card-container {
+    // transform: scale(1) !important;
+}
+
+
+// material styles
+.mat-menu-custom {
+    background-color: orangered !important;
+}
+
+.mat-dialog-container {
+    padding : 0 !important;
+}
+
+.mat-dialog-content {
+    margin: 0 !important;
+}
+
+.mat-tab-body-content {
+    height: 100%;
+}
+
+.mat-tab-header {
+    z-index: 9999;
+    position: sticky !important;
+    top: 0px;
+    background-color: white !important;
+}
+
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+    transform: none !important;
+}
+
+.mat-tab-labels{
+    justify-content: center; /* align items in Main Axis */
+}
+
+.address-expansion {
+    box-shadow: none !important;
+}
+
+// material icon styling
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

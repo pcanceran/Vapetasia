@@ -1,0 +1,47 @@
+:host {
+    height: 100%;
+}
+
+#login {
+    height: 100%;
+    display: block;
+    margin-right: auto;
+
+    #login-button {
+        height: 100%;
+    }
+}
+
+.panel-body {
+    margin-top: 25px;
+}
+
+.message {
+    color: red;
+    text-align: center;
+}
+
+.forgot {
+    color: rgb(85, 26, 139);    
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 17px;
+}
+
+.forgot-password {
+    p {
+        margin: 5px;
+        margin-top: 0;
+    }
+}
+
+.lock {
+    color: #3f51b5;
+    cursor: pointer;
+}
+
+.sign-in {
+    p {
+        margin: auto 0;
+    }
+}

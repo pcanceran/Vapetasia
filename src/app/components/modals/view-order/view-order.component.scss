@@ -1,0 +1,36 @@
+.root-container {
+    .title, .info {
+        text-align: center
+    }
+    .sub-header {
+        .date {
+            text-align: start;
+        }
+        .status {
+            text-align: end;
+            span {
+                color: orange;
+            }
+        }
+
+    }
+    .info {
+        border: 1px solid black;
+        border-radius: 7px;
+        margin-bottom: 10px;
+    }
+    .info > h2 {
+        text-decoration: underline;
+    }
+    .ordered-item {
+        border: 1px solid black;
+        border-radius: 7px;
+        margin-bottom: 10px;
+        max-height: 112px;
+    }
+    img {
+        border-radius: 7px;
+        height: 100%;
+        margin: 0px 25%;
+    }
+}

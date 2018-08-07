@@ -1,0 +1,12 @@
+<div class="menu" fxLayout="column">
+    <img src="https://dev17d.vapetasia.com/media/home-page/logo.png" alt="Vapetasia" class="logo"/>
+    <div fxLayout="row" [fxHide]="option.loggedDependent &amp;&amp; !logged" *ngFor="let option of displayOptions" (click)="setRoute(option.route, option.param)"
+    [style.background-color]="option === accountView ? 'orange' : 'white'">
+            <mat-icon class="nav-icon">{{option.icon}}</mat-icon>
+            <p>{{option.page}}</p>
+    </div>
+    <div fxLayout="row" [fxHide]="!logged" (click)="logout()">
+            <mat-icon class="nav-icon" color="warn">exit_to_app</mat-icon>
+            <p>Logout</p>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="root-container" fxLayout="row wrap" fxLayoutAlign="center">
+  <h1 class="title" fxFlex="100">Order Details</h1>
+  <div class="sub-header" fxLayout="row" fxFlex="85" fxLayoutAlign="space-between center">
+    <p class="date" fxFlex="50">Ordered on: {{date}}</p>
+    <p class="status" fxFlex="50">
+      Order Status:
+      <span>{{order.status}}</span>
+    </p>
+  </div>
+  <div class="info" fxFlex="95" fxLayout="row wrap" fxLayoutAlign="center">
+    <div class="shipping" fxFlex="45">
+      <h2>Shipping Address</h2>
+
+      <p>{{order.customer_firstname}} {{order.customer_lastname}}</p>
+      <p>{{shippingInfo.street}}</p>
+      <p>{{shippingInfo.city}} {{shippingInfo.region_code}} {{shippingInfo.postcode}}</p>
+      <p>United States</p>
+    </div>
+    <!-- <div class="tracking" fxFlex="45">
+      <h2>Shipping/Tracking</h2>
+      <p>Shipping Method: {{order.shipping_description}}</p>
+      <a href="#" (click)="openTracking($event)">1121JK31111YL</a> 
+    </div> -->
+    <div class="billing" fxFlex="45">
+      <h2>Billing Address</h2>
+      <p>{{order.customer_firstname}} {{order.customer_lastname}}</p>
+      <p>{{order.billing_address.street}}</p>
+      <p>{{order.billing_address.city}}, {{order.billing_address.region_code}}, {{order.billing_address.postcode}}</p>
+      <p>United States</p>
+    </div>
+    <div class="order" fxFlex="45">
+      <h2>Order Total</h2>
+      <p>Item(s) Subtotal: ${{order.base_subtotal}}.00</p>
+      <p>Shipping &amp; Handling: ${{order.base_shipping_amount}}</p>
+      <p>Tax: ${{order.base_tax_amount}}.00</p>
+      <p>
+        <b>Grand Total: ${{order.base_grand_total}}</b>
+      </p>
+    </div>
+  </div>
+  <div class="ordered-item" fxFlex="95" fxLayout="row" *ngFor="let item of items">
+    <div class="img-container" fxFlex="25">
+      <img [src]="item.image">
+    </div>
+    <div class="product-info">
+      <h3>{{item.name}}</h3>
+      <h5>
+        <b>Price:</b> ${{item.base_price}}.00 Quantity: {{item.qty_ordered}}</h5>
+    </div>
+  </div>
+</div>

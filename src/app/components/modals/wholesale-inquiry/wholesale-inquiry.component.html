@@ -1,0 +1,72 @@
+<div class="container" fxLayoutAlign="center" fxLayout="row wrap">
+  <div class="info" fxFlex="100">
+    <p>{{info}}</p>
+  </div>
+  <form fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="title" fxLayoutAlign="start center" fxFlex="85">
+      <h2>Contact Info</h2>
+    </div>
+    <div class="contact-info" fxFlex="85" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <mat-form-field appearance="outline" fxFlex="45">
+        <mat-label>
+          First Name
+        </mat-label>
+        <input type="text" matInput required [formControl]="firstNameFormControl" [errorStateMatcher]="matcher" name="first" [(ngModel)]="newCustomer.firstname">
+        <mat-error>
+          First name is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex="45">
+        <mat-label>
+          Last Name
+        </mat-label>
+        <input type="text" matInput placeholder="Last Name" required [formControl]="lastNameFormControl" [errorStateMatcher]="matcher" name="lasr" [(ngModel)]="newCustomer.lastname">
+        <mat-error>
+          Last name is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex="45">
+        <mat-label>
+          Email
+        </mat-label>
+        <input type="text" matInput placeholder="Email" required [formControl]="emailFormControl" [errorStateMatcher]="matcher" name="email" [(ngModel)]="newCustomer.email">
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is required!
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex="45">
+        <mat-label>
+          Company
+        </mat-label>
+        <input type="text" matInput placeholder="Company" required [formControl]="companyFormControl" [errorStateMatcher]="matcher" name="company" [(ngModel)]="newCustomer.company">
+        <mat-error>
+          Company is required!
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex="45">
+        <mat-label>
+          Phone Number
+        </mat-label>
+        <input type="text" matInput placeholder="Phone Number" required [formControl]="phoneFormControl" [errorStateMatcher]="matcher" name="phone" [(ngModel)]="newCustomer.telephone">
+        <mat-error>
+          Phone number is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="password" fxFlex="85" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <div class="error" *ngIf="confirmedError">
+        <p>
+          {{errorMessage}}
+        </p>
+      </div>
+      <div fxFlex="100" fxLayoutAlign="center" class="button">
+        <button type="submit" color="primary" mat-raised-button (click)="submitForm()">Inquire</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,90 @@
+<div class="saved-carts-component">
+        <div class="header" fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+            <h1>My Saved Carts</h1>
+        </div>
+        <div fxLayoutAlign.lt-md="center" fxLayoutAlign.md="center">
+            <table>
+                <tr id="order-tr">
+                    <th>
+                    <h3>Date:</h3>
+                    </th>
+                    <th>
+                    <h3>Name:</h3>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of carts">
+                    <td>
+                        <p>{{item.date}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.name}}</p>
+                    </td>
+                    <td>
+                        <a href="#"><u>View Cart</u></a>
+                    </td>
+                    <td>
+                        <a href="#" class="delete">Delete</a>
+                    </td>
+                    <td>
+                        <a href="#">Restore Cart</a>
+                    </td>
+      
+                    <td>
+                        <a href="#">Get Shared Link</a>
+                    </td>
+      
+                    <td>
+                        <a href="#">Print Cart</a>
+                    </td>
+                </tr>
+                </table>
+        </div>
+      </div>
+    
+    <!-- <div class="saved-carts-component">
+        <div class="header">
+            <h1>My Orders</h1>
+        </div>
+        <div>
+            <table>
+                <tr id="order-tr">
+                    <th>
+                    <h3>Date:</h3>
+                    </th>
+                    <th>
+                    <h3>Name:</h3>
+                    </th>
+                </tr>
+                <tr *ngFor="let item of carts">
+                    <td>
+                        <p>{{item.date}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.name}}</p>
+                    </td>
+                    <td>
+                        <a href="#"><u>View Cart</u></a>
+                    </td>
+                    <td>
+                        <a href="#">Delete</a>
+                    </td>
+                    <td>
+                        <a href="#">Restore Cart</a>
+                    </td>
+    
+                    <td>
+                        <a href="#">Get Shared Link</a>
+                    </td>
+    
+                    <td>
+                        <a href="#">Print Cart</a>
+                    </td>
+                </tr>
+                </table>
+        </div>
+    </div> -->

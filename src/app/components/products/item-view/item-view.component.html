@@ -1,0 +1,41 @@
+<div *ngIf="productGroup">
+    <div fxLayout="column" id="product">
+        <div fxLayout="row wrap" fxLayoutAlign="center center" id="product-info-container">
+            <div fxFlex="45" fxFlex.lt-md="80" fxLayout="row" fxLayoutAlign="center center" id="product-image-container">
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            </div>
+            <div fxFlex="45" fxFlex.lt-md="80" fxLayout="row wrap" fxLayoutAlign="center center" id="product-info">
+                <!-- <div id="product-name" fxFlex="100">
+                    <h2>{{productGroup.name.toUpperCase()}}</h2>
+                </div> -->
+                <div fxFlex="100" fxHide.gt-sm class="description">
+                    <p>{{productGroup.shortDescription}}</p>
+                </div>
+                <div fxFlex="100" fxHide.lt-md class="description">
+                    <p>{{productGroup.description}}</p>
+                </div>
+                <!-- <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                    <div fxLayout="row wrap" *ngIf="productGroup.type === 'Liquid'" fxLayoutAlign="space-around center" fxFlex.lt-md="100" fxFlex="75">
+                        <div class="selector-image" [ngClass]="{'selected-group':  group === selectedGrouping}" *ngFor="let group of productGroup.groupings"
+                            (click)="selectGroup(group)" (click)="setGallery(group.images)">
+                            <img src="{{group.images[0]}}"/>
+                            <p>{{group.name}}</p>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxFlex="25" fxFlex.lt-md="100" fxLayoutAlign="center center">
+                        <button mat-raised-button [fxHide]="!logged" color="primary" (click)="addItems(productGroup)">Add to Cart</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div fxLayout="column wrap" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+            <div fxLayout="row wrap" fxFlex.lt-md="100" fxFlex="80" fxLayoutAlign="space-around center" fxLayoutGap="20px" id="product-options" *ngFor="let group of productGroup.groupings" >
+                <div class="display-image">
+                    <!-- <img src="{{group.images[0]}}" >
+                    <p>{{group.name}}</p> -->
+                </div>
+                <app-item-grouping [grouping]="group" [subType]="productGroup.subType" [type]="productGroup.type" ></app-item-grouping>
+            </div>
+        </div>
+    </div>
+</div>

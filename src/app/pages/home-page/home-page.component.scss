@@ -1,0 +1,56 @@
+.content {
+    background-color: white;
+    width: 100%;
+
+    #container {
+        height: 100%;
+        width: 100%;
+
+        #banner {
+            width: 100%;
+            padding: 50px 0;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        #title {
+            h2 {
+                font-size: 2em;
+                text-align: center;
+            }
+
+            .title-mini {
+                font-size: 1em;
+            }
+        }
+
+        #info-container {
+
+            img {
+                height: 50px;
+            }
+
+            p {
+                margin: 10px;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+        }
+
+        #brands-container {
+            width: 100%;
+
+            #brands {
+                border-top: 2px solid black; 
+                padding-top: 50px;
+    
+                img {
+                    max-width: 100%;
+                    margin-bottom: 25px;
+                }
+            }
+        }
+    }
+}

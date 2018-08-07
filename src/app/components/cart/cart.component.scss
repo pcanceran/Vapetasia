@@ -1,0 +1,186 @@
+.grouping-container {
+    margin-top: 20px;
+}
+.cart-header {
+    box-shadow: 0px 5px 5px black;
+    z-index: 100;
+    margin: 0;
+    margin-bottom: 10px;
+
+    p {
+        margin: 10px;
+    }
+
+    h2 {
+        margin: 10px 0px 0px;
+    }
+}
+
+h3 {
+    // background-color: #3f51b5;
+    // background-color: orange;
+
+}
+
+img {
+    width: 50%;
+    height: auto;
+    margin: 0px 25%;
+}
+
+// .product {
+  
+//     float: right;
+// }
+
+// .product-header {
+   
+// }
+
+
+// .product-header {
+//     text-align: center;
+// }
+
+.product {
+    // background-color: grey;
+    // margin-right: 7px;
+    // box-shadow: -1px 2px 2px 1px black;
+    // // width: 200px;
+    
+    .item{
+        box-shadow: -1px 5px 7px 0;
+        margin-right: 10px;
+
+         h4 {
+             font-size: 20px;
+         }
+         .strength {
+            margin: 0;
+            margin-top: 2px;
+            text-align: center;
+            background-color: #C9C7C7;
+         }
+         .quantity {
+            margin-bottom: 2px;
+            margin-top: 0px;
+            text-align: center;
+            background-color: white;
+         }
+         .toolbar {
+            background-color: #dbd9d9;
+         }
+        //     background-color: #3f51b5;
+        //     font-size: 20px;
+        // }
+}
+}
+
+
+
+.cart-details {
+    font-size: 20px;
+    background-color: grey;
+    margin-right: 5px;
+}
+
+// .row-container > div {
+//     background-color: #3f51b5;
+//     margin-bottom: 2px;
+// }
+
+
+
+.qty {
+    .qty-val{
+        float: right;
+    }
+}
+
+// .product-descriptor {
+// }
+
+.cart-item{
+    text-align: center;
+    margin-bottom: 0px;
+    padding-top: 8px;
+}
+
+.cart-items {
+    margin: 25px 5%;
+    border-top: 1px solid black;
+
+    &:first-child {
+        border: none;
+    }
+}
+
+.action-button {
+    color: grey;
+    cursor: pointer;
+}
+
+.qty-input {
+    width: 97%;
+}
+
+// .test1 {
+//     background-color: green;
+// }
+
+.root-container {
+    z-index: 9999;
+}
+.table-container{
+    
+    &:nth-child(even) {
+        background-color: gainsboro;
+        .action-button {
+            color: grey;
+        }
+        
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        border-style: hidden;
+        width: 100%;
+        tr > td {
+            text-align: center;
+        }
+
+        td, th {
+            // border: 1px solid black;
+            mat-action-row {
+                border-top-style: none;
+            }
+            input {
+                text-align: center;
+                font-size: 12pt;
+            }
+
+            .hide {
+                display: none;
+            }
+
+            .test {
+                background-color: blue;
+            }
+        }
+
+        p {
+            margin: 5px 0px;
+        }
+    }
+}
+
+h5 {
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+}
+
+.grouping-title {
+    text-align: center;
+}

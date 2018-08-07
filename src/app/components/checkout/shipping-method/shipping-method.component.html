@@ -1,0 +1,32 @@
+<form>
+  <div fxLayout="row wrap">
+    <div *ngFor="let address of addresses" class="address" [ngClass]="{'selected-address': address === selectedAddress}" (click)="selectAddress(address)">
+      <div fxFlex="25" fxLayout="row">
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center" class="check">
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+      <div class="address-info">
+        <p>{{address.firstname}} {{address.lastname}}</p>
+        <p *ngFor="let line of address.street">{{line}}</p>
+        <p>{{address.city}}, {{address.region.region}} {{address.postcode}}</p>
+        <p>{{address.country_id}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="shipping-methods">
+    <h5>Shipping Options</h5>
+    <mat-spinner *ngIf="shippingMethods.length === 0 || queueActive"></mat-spinner>
+    <mat-radio-group *ngIf="shippingMethods.length > 0 &amp;&amp; !queueActive" name="shippingMethod" fxLayout="column" required>
+      <mat-radio-button color="primary" [fxHide]="method.method_code === 'storepickup' &amp;&amp; !localPickupEligible" *ngFor="let method of shippingMethods" class="methods" [value]="method" (click)="shippingMethodSelected(method)">
+        <b>$</b>{{method.amount.toFixed(2)}} {{method.method_title}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <div class="progress-container">
+      <mat-progress-bar fxFlex="100" mode="indeterminate" *ngIf="shippingLoading"></mat-progress-bar> <!-- class="loading" -->
+    </div>
+  </div> 
+</form>
+<div class="tab-navigation" fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="primary" [disabled]="!buttonStatus.shippingComplete" (click)="switchTabs(1)">Next</button>
+</div>

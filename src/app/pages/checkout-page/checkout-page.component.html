@@ -1,0 +1,44 @@
+<div id="checkout">
+  <mat-tab-group dynamicHeight [headerPosition]="'above'" #tabGroup (selectedIndexChange)="indexChanged($event)">
+    <mat-tab [disabled]="fin">
+      <ng-template mat-tab-label>
+        <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">local_shipping</mat-icon>
+        <h2 fxShow.lt-md="false">Shipping</h2>
+      </ng-template>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <mat-spinner [fxHide]="addressesLoaded"></mat-spinner>
+        <app-shipping-method [buttonStatus]="buttonStatus" [fxHide]="!addressesLoaded" (shippingMethodStatus)="setShippingComplete($event)" (navigateTabs)="navigateTabGroup($event)" (addressesLoaded)="addressesLoaded = true"></app-shipping-method>
+      </div>
+    </mat-tab> 
+    <mat-tab [disabled]="!buttonStatus.shippingComplete || fin">
+      <ng-template mat-tab-label>
+        <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">payment</mat-icon>
+        <h2 fxShow.lt-md="false">Payment</h2>
+      </ng-template>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div id="payment">
+          <app-payment [buttonStatus]="buttonStatus" [cartTotal]="cartTotal" [paymentInfo]="paymentInfo" [newCard]="newCard" [selectedPayment]="paymentProfile" (rewardsPointsUpdate)="getTotal()" [newAddress]="newAddress" [defaultBilling]="defaultBilling"
+            (paymentMethodStatus)="setPaymentComplete($event)" (isNewCard)="isNewCard = $event" (rewardsPointsStatus)="setRewardsComplete($event)" (navigateTabs)="navigateTabGroup($event)" (resetNonDefaultBilling)="setDefaultAddress()"></app-payment>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab [disabled]="!buttonStatus.paymentComplete || !buttonStatus.rewardsComplete || !buttonStatus.shippingComplete || fin"> <!-- add block for validation -->
+      <ng-template mat-tab-label>
+        <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">thumb_up</mat-icon>
+        <h2 fxShow.lt-md="false">Confirm Order</h2>
+      </ng-template>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <app-confirm-order #orderConfirmation [newCard]="newCard" [buttonStatus]="buttonStatus" [shippingAddress]="shippingAddress" [billingAddress]="billingAddress" [cartTotal]="cartTotal" [paymentInfo]="paymentInfo" [paymentProfile]="paymentProfile" (placeOrderOutput)="placeOrder()" (navigateTabs)="navigateTabGroup($event)"></app-confirm-order>
+      </div>
+    </mat-tab>
+    <mat-tab [disabled]="!buttonStatus.orderComplete">
+      <ng-template mat-tab-label>
+        <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">beenhere</mat-icon>
+        <h2 fxShow.lt-md="false">Complete</h2>
+      </ng-template>
+      <div id="complete">
+        <h3>{{completeMessage}} <span *ngIf="orderNumber"> <span class="order-number">{{orderNumber}}</span> is being proccessed. Thank you for being a valued customer.</span> </h3>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

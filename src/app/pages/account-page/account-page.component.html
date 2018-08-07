@@ -1,0 +1,32 @@
+<div class="content">
+      <mat-tab-group dynamicHeight [headerPosition]="'above'">
+        <mat-tab>
+          <ng-template mat-tab-label >
+            <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">account_box</mat-icon>
+            <h2 fxShow.lt-md="false">Dashboard</h2>
+          </ng-template>
+          <app-dashboard></app-dashboard>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon fxShow.md="false" fxShow.gt-md="false" class="icon" matTooltip="">credit_card</mat-icon>
+            <h2 fxShow.lt-md="false">Orders</h2>
+          </ng-template>
+          <app-orders></app-orders>
+        </mat-tab>
+        <!-- <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">library_books</mat-icon>
+            <h2 fxShow.lt-md="false">Account Info</h2>
+          </ng-template>
+          <app-account-info class="tab"></app-account-info>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon" matTooltip="" fxShow.md="false" fxShow.gt-md="false">shopping_cart</mat-icon>
+            <h2 fxShow.lt-md="false">Saved Carts</h2>
+          </ng-template>
+          <app-saved-carts class="tab"></app-saved-carts>
+       </mat-tab> -->
+      </mat-tab-group>
+  </div>

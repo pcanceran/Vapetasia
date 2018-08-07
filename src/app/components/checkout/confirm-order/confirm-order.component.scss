@@ -1,0 +1,98 @@
+.root-container {
+    .order-info-container {
+
+        #segments {
+            margin-top: 50px;
+            
+            .segment {
+                padding: 10px;
+        
+                &:nth-child(even) {
+                    background-color: gainsboro;
+                }
+            }
+        }
+        
+        .order-info {
+            margin: 25px 0;
+        }
+    }
+
+    .cart-info {
+        .cart-items {
+            margin: 25px 0;
+            border-top: 1px solid black;
+
+            &:first-child {
+                border: none;
+            }
+
+            .img-container {
+                h5 {
+                    text-align: center;
+                    width: 100%;
+                    margin: 0px;
+                }
+
+                img {
+                    width: 50%;
+                    height: auto;
+                    margin: 25px 25%;
+                }
+            }
+        }
+
+        .grouping-container {
+
+            .grouping-title {
+                text-align: center;
+            }
+        
+            .table-container{
+            
+                &:nth-child(even) {
+                    background-color: gainsboro;
+                }
+            
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    border-style: hidden;
+                    width: 100%;
+                    tr > td {
+                        text-align: center;
+                    }
+            
+                    td, th {
+                        // border: 1px solid black;
+                        mat-action-row {
+                            border-top-style: none;
+                        }
+                    }
+            
+                    p {
+                        margin: 5px 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#points {
+    margin-bottom: 50px;
+
+    .actions {
+        button {
+            margin-right: 10px;
+        }
+    }
+}
+
+.tab-navigation {
+    width: 100%;
+    
+    button {
+        margin: 0 25px;
+    }
+}

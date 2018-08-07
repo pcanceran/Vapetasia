@@ -1,0 +1,76 @@
+<div class="root-container" fxLayout="row reverse-wrap" fxLayoutAlign="space-around end">
+  <div fxFlex="40" fxFlex.lt-md="80" fxLayout="column" class="order-info-container">
+    <div id="segments">
+      <div fxLayout="row wrap" *ngFor="let segment of cartTotal.total_segments" class="segment">
+        <div fxFlex="70" fxLayout="row" fxLayoutAlign="start center">
+          <b *ngIf="segment.title !== 'FPT'">{{segment.title}}</b>
+          <b *ngIf="segment.title === 'FPT'">Tax Paid</b>
+        </div>
+        <div fxFlex="30" fxLayout="row" fxLayoutAlign="end center">
+          <b>$</b>{{segment.value.toFixed(2)}}
+        </div>
+      </div>
+    </div>
+    <div class="order-info">
+      <h3>Shipping</h3>
+      <p>{{shippingAddress.firstname}} {{shippingAddress.lastname}}</p>
+      <p *ngFor="let line of shippingAddress.street">{{line}}</p>
+      <p>{{shippingAddress.city}}, {{shippingAddress.region}} {{shippingAddress.postcode}} {{shippingAddress.country_id}}</p>
+    </div>
+    <!-- <div class="order-info">
+      <h3>Billing</h3>
+      <div fxLayout="row" *ngIf="paymentProfile.payment &amp;&amp; !isNewCard">
+        <p *ngIf="paymentProfile.payment.creditCard.cardType === 'Visa'"><i class="fab fa-cc-visa fa-lg"></i><b> Visa</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}} &nbsp;&nbsp;&nbsp;</p>
+        <p *ngIf="paymentProfile.payment.creditCard.cardType === 'AmericanExpress'"><i class="fab fa-cc-amex fa-lg"></i><b> American Express</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}} &nbsp;&nbsp;&nbsp;</p>
+        <p *ngIf="paymentProfile.payment.creditCard.cardType === 'MasterCard'"><i class="fab fa-cc-mastercard fa-lg"></i><b> Mastercard</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}} &nbsp;&nbsp;&nbsp;</p>
+        <p *ngIf="paymentProfile.payment.creditCard.cardType === 'Discover'"><i class="fab fa-cc-discover fa-lg"></i><b> Discover Card</b> ending in {{getLastFour(paymentProfile.payment.creditCard.cardNumber)}} &nbsp;&nbsp;&nbsp;</p>
+      </div>
+      <div fxLayout="row" *ngIf="isNewCard">
+          <p><b>Card</b> ending in {{getLastFour(newCard.cc_number)}} &nbsp;&nbsp;&nbsp;</p>
+        </div>
+      <div *ngIf="billingAddress">
+        <p>{{billingAddress.firstname}} {{billingAddress.lastname}}</p>
+        <p *ngFor="let line of billingAddress.street">{{line}}</p>
+        <p>{{billingAddress.city}}, {{billingAddress.region}} {{billingAddress.postcode}} {{billingAddress.country_id}}</p>
+      </div>
+    </div> -->
+  </div>
+  <div class="cart-info" fxFlex="40" fxFlex.lt-md="80" fxLayout="row wrap">
+    <div fxLayout.sm="column" fxLayout.xs="column" fxFlex="100" *ngFor="let cartItem of localCart.items; let itemIndex = index"
+      fxLayout="row" fxLayoutalign="center center" class="cart-items">
+      <div class="img-container" fxFlex.gt-sm="25">
+        <img [src]="cartItem.thumbnail" />
+        <h5>{{cartItem.name}}</h5>
+      </div>
+      <div class="grouping-container" fxFlex="75">
+        <div *ngFor="let grouping of cartItem.groupings; let groupIndex = index;" fxLayout="column">
+          <h2 class="grouping-title" fxFlex="100" *ngIf="grouping.inCart === true">
+            <span *ngIf="cartItem.type === 'Liquid'">{{grouping.name}} </span>{{cartItem.name}}</h2>
+          <div fxLayout="row" fxFlex="100" class="table-container" *ngFor="let product of grouping.products | cartItem; let rowIndex = index;">
+            <table fxFlex="100">
+              <tr fxLayout="row" fxLayoutAlign="space-around center">
+                <td fxFlex="25">
+                  <p *ngIf="product.customerPrice">
+                    <b>$</b>{{product.customerPrice.toFixed(2)}}</p>
+                  <i class="material-icons" *ngIf="!product.customerPrice">report</i>
+                </td>
+                <td fxFlex="25">
+                  <p>{{product.descriptor}}</p>
+                </td>
+                <td fxFlex="25">
+                  <p>
+                    <b>{{product.inCart}}</b>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tab-navigation" fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="primary" (click)="switchTabs(1)">Back</button>
+  <button mat-raised-button color="primary" (click)="placeOrder()">Confirm</button>
+</div>
